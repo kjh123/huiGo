@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/kjh123/huiGo/models"
 	"github.com/kjh123/huiGo/util/migrations"
 )
 
@@ -13,7 +14,11 @@ func Migrate(configFile string) error {
 	defer db.Close()
 
 	if err := migrations.BootStrap(db); err != nil {
-		return nil
+		return err
+	}
+
+	if err := models.MigrateAll(db); err != nil {
+		return err
 	}
 
 	return nil
