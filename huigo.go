@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/kjh123/huiGo/cmd"
 	"github.com/urfave/cli"
 	"log"
 	"os"
@@ -26,6 +27,13 @@ func init() {
 	}
 	// Commands
 	app.Commands = []cli.Command {
+		{
+			Name: "migrate",
+			Usage: "run migrations",
+			Action: func(c *cli.Context) error {
+				return cmd.Migrate(configFile)
+			},
+		},
 		{
 			Name: "db",
 			Usage: "database operations",
