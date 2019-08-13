@@ -15,8 +15,14 @@ func (s *Service) GetRoutes() []routes.Route {
 		{
 			Name: "create_user",
 			Method: "POST",
-			Pattern: "/create",
-			HandlerFunc: s.users,
+			Pattern: "/users",
+			HandlerFunc: s.createUser,
+		},
+		{
+			Name: "update_user",
+			Method: "PUT",
+			Pattern: "/user/{id}",
+			HandlerFunc: s.updateUser,
 		},
 	}
 }

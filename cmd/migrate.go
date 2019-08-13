@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/kjh123/huiGo/models"
 	"github.com/kjh123/huiGo/util/migrations"
 )
 
@@ -17,7 +16,7 @@ func Migrate(configFile string) error {
 		return err
 	}
 
-	if err := models.MigrateAll(db); err != nil {
+	if err := migrations.MigrateAll(db); err != nil {
 		return err
 	}
 

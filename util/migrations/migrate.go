@@ -4,25 +4,24 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	"github.com/kjh123/huiGo/log"
-	"github.com/kjh123/huiGo/models"
 )
 
 type MigrationStage struct {
-	Model models.ModelInterface
-	Function func(db *gorm.DB, m models.ModelInterface) error
+	ModelName string
+	Function func(db *gorm.DB, modelName string) error
 }
 
 func Migrate(db *gorm.DB, migrations []MigrationStage) error {
 	for _, m := range migrations {
-		if MigrationExists(db, m.Model.TableName()) {
+		if MigrationExists(db, m.ModelName) {
 			continue
 		}
 
-		if err := m.Function(db, m.Model); err != nil {
+		if err := m.Function(db, m.ModelName); err != nil {
 			return err
 		}
 
-		if err := SaveMigration(db, m.Model.TableName()); err != nil {
+		if err := SaveMigration(db, m.ModelName); err != nil {
 			return err
 		}
 
