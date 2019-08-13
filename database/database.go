@@ -5,6 +5,8 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/kjh123/huiGo/config"
 	"time"
+	// db driver
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 func init()  {

@@ -13,15 +13,21 @@ func (s *Service) RegisterRoutes(router *mux.Router, prefix string) {
 func (s *Service) GetRoutes() []routes.Route {
 	return []routes.Route{
 		{
-			Name: "create_user",
-			Method: "POST",
-			Pattern: "/users",
+			Name:        "get_users",
+			Method:      "GET",
+			Pattern:     "/users",
 			HandlerFunc: s.createUser,
 		},
 		{
-			Name: "update_user",
-			Method: "PUT",
-			Pattern: "/user/{id}",
+			Name:        "create_user",
+			Method:      "POST",
+			Pattern:     "/users",
+			HandlerFunc: s.createUser,
+		},
+		{
+			Name:        "update_user",
+			Method:      "PUT",
+			Pattern:     "/user/{id}",
 			HandlerFunc: s.updateUser,
 		},
 	}

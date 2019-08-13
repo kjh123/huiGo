@@ -35,6 +35,13 @@ func init() {
 			},
 		},
 		{
+			Name: "run",
+			Usage: "run serve",
+			Action: func(c *cli.Context) error {
+				return cmd.Serve(configFile)
+			},
+		},
+		{
 			Name: "db",
 			Usage: "database operations",
 			Category: "database",

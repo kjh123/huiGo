@@ -9,5 +9,6 @@ type DatabaseConfig struct {
 
 type Config struct {
 	DatabaseConfig
+	ServerPort int `default:"8080"`
 	IsDevelopment bool `default:"True"`
 }
