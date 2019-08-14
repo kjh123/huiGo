@@ -1,35 +1,10 @@
 package user
 
-import (
-	"fmt"
-	"github.com/jinzhu/gorm"
-	"github.com/kjh123/huiGo/log"
-)
-
-type UserModel struct {
-	Name string 	`sql:"type:varchar(32);not null"`
-	Password string `sql:"type:varchar(32)"`
-	NickName string `sql:"type:varchar(32)"`
-	gorm.Model
-}
-
-func (m UserModel) TableName() string {
-	return "users"
-}
-
-// User Table Migrate
-func Migrate(db *gorm.DB, modelName string) error {
-	if err := db.CreateTable(new(UserModel)).Error; err != nil {
-		log.ERROR.Printf("Error create table : %s", modelName)
-		return fmt.Errorf("Error create table : %s", err)
-	}
-	return nil
-}
-
+// user list (GET /v1/user/users)
 func (s *Service) userList() ([]UserModel, error) {
-	var users []UserModel
-	if err := s.db.Find(&users).Error; err != nil {
-		return nil, err
-	}
-	return users, nil
+    var users []UserModel
+    if err := s.db.Find(&users).Error; err != nil {
+        return nil, err
+    }
+    return users, nil
 }
